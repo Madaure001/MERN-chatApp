@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
-import useGetMessages from "../../hooks/useGetMessages";
-import MessageSkeleton from "../skeletons/MessageSkeleton";
-import Message from "./Message";
-//import useListenMessages from "../../hooks/useListenMessages";
+import useGetMessages from "../../hooks/useGetMessages.js";
+import MessageSkeleton from "../skeletons/MessageSkeleton.jsx";
+import Message from "./Message.jsx";
+import useListenMessages from "../../hooks/useListenMessages.js";
 
 const Messages = () => {
 	const { messages, loading } = useGetMessages();
-	//useListenMessages();
+	useListenMessages();
 	const lastMessageRef = useRef();
 
 	useEffect(() => {
@@ -27,7 +27,7 @@ const Messages = () => {
 
 			{loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
 			{!loading && messages.length === 0 && (
-				<p className='text-center text-gray-500'>Send a message to start the conversation</p>
+				<p className='text-center text-gray-400'>Send a message to start the conversation</p>
 			)}
 		</div>
 	);
