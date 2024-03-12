@@ -29,6 +29,8 @@ export const sendMessage = async (req, res) => {
         if(newMessage) {
             conversation.messages.push(newMessage._id);         //if message was sent, add to convesation array
         };
+        // await conversation.save();
+		// await newMessage.save();
 
         //running parallel
         await Promise.all([conversation.save(), newMessage.save()]);
