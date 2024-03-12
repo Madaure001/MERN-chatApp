@@ -8,7 +8,7 @@ export default defineConfig({
     port: 5000,
     proxy: {
       "/api": {
-        target: "https://chatlyap.netlify.app/"
+        target: "http://localhost:5000/"
       },
     },
   },
