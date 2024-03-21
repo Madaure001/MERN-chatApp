@@ -22,7 +22,7 @@ app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
 //middleware
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.use(express.static(path.join(__dirname, "/frontend/dist/src")));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "frontend", "dist/src", "index.html"))
 })
