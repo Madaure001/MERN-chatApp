@@ -11,7 +11,7 @@ export const sendMessage = async (req, res) => {
         //using let because it will change in a sec
         let conversation = await Conversation.findOne({        //find conversation between participants
             participants: { $all: [senderId, receiverId] }     //$aLL part of mongo
-        });
+        }); //NOT REFERENCE BUT ACTUAL MESSAGE;
 
         if(!conversation) {         //if there's no conversation then create a new one
             conversation = await Conversation.create({
@@ -23,26 +23,33 @@ export const sendMessage = async (req, res) => {
         const newMessage = new Message({        //create a new message between participants
             senderId,
             receiverId,
-            message
+            message,
         });
 
         if(newMessage) {
-            conversation.messages.push(newMessage._id);         //if message was sent, add to convesation array
+            conversation.messages.push(newMessage);         //if message was sent, add to convesation array
         };
         // await conversation.save();
 		// await newMessage.save();
 
         //running parallel
         await Promise.all([conversation.save(), newMessage.save()]);
+        let conversations = await Conversation.findOne({        //find conversation between participants
+            participants: { $all: [senderId, receiverId] }     //$aLL part of mongo
+        }).populate("messages"); //NOT REFERENCE BUT ACTUAL MESSAGE;
+
 
         //SOCKET IO FUNCTIONALITY WILL GO IN HERE
         const receiverSocketId = getReceiverSocketId(receiverId);
 		if (receiverSocketId) {
 			// io.to(<socket_id>).emit() used to send events to specific client
 			io.to(receiverSocketId).emit("newMessage", newMessage);
+        
 		}        
 
-        res.status(201).json({newMessage});
+        const messages = conversations.messages;
+
+        res.status(200).json(messages);
 
     } catch (error) {
         console.log("Error in sendMessgae controller: ", error.message);

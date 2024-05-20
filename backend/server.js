@@ -8,12 +8,10 @@ import userRoutes from "./routes/users.routes.js";
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import { app, server } from "./socket/socket.js";
+dotenv.config();
 
 const __dirname = path.resolve();
 const PORT = process.env.PORT || 5000;
-
-dotenv.config();
-
 app.use(express.json()); // parsing incoming requests with JSON payloads (from re.body)
 app.use(cookieParser()); // call the cookie-parser before accessing the routes
 
