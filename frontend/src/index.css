@@ -5,9 +5,13 @@
 body{
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.));
   background-image: url("/bg.png");
-  background-size: auto;
-  background-size: cover;  
+  background-size: cover; 
+  background-size: center;
 };
+
+.text-input {
+	@apply border-transparent focus:border-none focus:ring-0
+}
 
 /*dark mode looking scrollbar */
 ::-webkit-scrollbar{

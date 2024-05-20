@@ -1,11 +1,18 @@
 import useGetConversations from "../../hooks/useGetConversations.js";
 import { getRandomEmoji } from "../../utils/emojis";
 import Conversation from "./Conversation.jsx";
+import useGetMessages from "../../hooks/useGetMessages.js";
+import { useEffect, useState } from "react";
+import useConversation from "../../zustand/useConversation.js";
+
 
 const Conversations = () => {
-	const { loading, conversations } = useGetConversations();
+	const { loading, conversations } = useGetConversations();	
+	
+	
+
 	return (
-		<div className='py-2 flex flex-col overflow-auto'>
+		<div className='flex flex-col overflow-auto px-2 rounded-2xl mb-2'>
 			{conversations.map((conversation, idx) => (
 				<Conversation
 					key={conversation._id}

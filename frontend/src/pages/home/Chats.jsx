@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import useConversation from "../../zustand/useConversation.js";
-import MessageInput from "./MessageInput.jsx";
-import Messages from "./Messages";
+import useConversation from "../../zustand/useConversation";
+import MessageInput from "../../components/messages/MessageInput.jsx";
+import Messages from "../../components/messages/Messages.jsx";
 import { TiMessages } from "react-icons/ti";
 import { useAuthContext } from "../../context/AuthContext.jsx";
+
 
 const MessageContainer = () => {
 	const { selectedConversation, setSelectedConversation } = useConversation();
@@ -14,20 +15,38 @@ const MessageContainer = () => {
 	}, [setSelectedConversation]);
 
 	return (
-		<div className='md:flex w-full flex-col p-4 hidden'>
-			{!selectedConversation ? (
-				<NoChatSelected />
-			) : (
-				<>
-					{/* Header */}
-					<div className='bg-slate-500 px-8 rounded-lg py-2 mb-2'>
-						<span className='label-text'>To:</span>{" "}
-						<span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
-					</div>
-					<Messages />
-					<MessageInput />
-				</>
-			)}
+		<div>
+			<div className='flex w-full flex-col p-4 md:hidden'>
+				{!selectedConversation ? (
+					<NoChatSelected />
+				) : (
+					<>
+						{/* Header */}
+						<div className='bg-slate-500 px-8 rounded-lg py-2 mb-2'>
+							<span className='label-text'>To:</span>{" "}
+							<span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
+						</div>
+						<Messages />
+						<MessageInput />
+					</>
+				)}
+			</div>
+
+				<div className='md:hidden w-full flex-col p-4 flex'>
+				{!selectedConversation ? (
+					<NoChatSelected />
+				) : (
+					<>
+						{/* Header */}
+						<div className='bg-slate-500 px-8 rounded-lg py-2 mb-2'>
+							<span className='label-text'>To:</span>{" "}
+							<span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
+						</div>
+						<Messages />
+						<MessageInput />
+					</>
+				)}
+			</div>
 		</div>
 		
 	);

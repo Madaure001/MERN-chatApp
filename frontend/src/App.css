@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.text-input {
+  @apply border-transparent focus:border-none focus:ring-0
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

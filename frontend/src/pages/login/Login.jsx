@@ -14,11 +14,11 @@ const Login = () => {
 	};
 
 	return (
-		<div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
-			<div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-				<h1 className='text-3xl font-semibold text-center text-gray-300'>
+		<div className=' flex flex-col items-center justify-center w-full md:w-1/2 sm:min-w-96 mx-auto md:p-6'>
+			<div className='rounded-lg shadow-lg bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0 w-full px-4'>
+				<h1 className='lg:text-2xl text-lg font-semibold text-center text-gray-300 mt-4'>
 					Login
-					<span className='text-blue-500'> ChatApp</span>
+					<span className='text-blue-500'> EazyChat</span>
 				</h1>
 
 				<form onSubmit={handleSubmit}>
@@ -29,7 +29,7 @@ const Login = () => {
 						<input
 							type='text'
 							placeholder='Enter username'
-							className='w-full input input-bordered h-10'
+							className='w-full h-8 md:h-10 px-4 rounded-lg'
 							value={username}
 							onChange={(e) => setUsername(e.target.value)}
 						/>
@@ -42,7 +42,7 @@ const Login = () => {
 						<input
 							type='password'
 							placeholder='Enter Password'
-							className='w-full input input-bordered h-10'
+							className='w-full h-8 md:h-10 px-4 rounded-lg text-input'
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
@@ -51,7 +51,7 @@ const Login = () => {
 						{"Don't"} have an account?
 					</Link>
 
-					<div>
+					<div className="mb-4">
 						<button className='btn btn-block btn-sm mt-2' disabled={loading}>
 							{loading ? <span className='loading loading-spinner '></span> : "Login"}
 						</button>
