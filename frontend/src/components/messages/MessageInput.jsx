@@ -16,14 +16,14 @@ const MessageInput = () => {
 	return (
 		<form className='px-4 my-3' onSubmit={handleSubmit}>
 			<div className='w-full relative'>
-				<input
+				<textarea
 					type='text'
-					className='border text-sm rounded-lg block w-full p-2.5  bg-gray-700 border-gray-300 text-white'
+					className='border text-sm rounded-lg w-full flex items-center pl-2 pr-12 pt-1 bg-gray-700 border-gray-300 text-white'
 					placeholder='Send a message'
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
 				/>
-				<button type='submit' className='absolute inset-y-0 end-0 flex items-center pe-3'>
+				<button type='submit' className='absolute inset-y-0 end-0 flex items-center pe-3 w-1/12'>
 					{loading ? <div className='loading loading-spinner'></div> : <BsSend />}
 				</button>
 			</div>
