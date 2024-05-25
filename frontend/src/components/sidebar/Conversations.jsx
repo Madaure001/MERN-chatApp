@@ -8,8 +8,6 @@ import useConversation from "../../zustand/useConversation.js";
 
 const Conversations = () => {
 	const { loading, conversations } = useGetConversations();	
-	
-	
 
 	return (
 		<div className='flex flex-col overflow-auto px-2 rounded-2xl mb-2'>

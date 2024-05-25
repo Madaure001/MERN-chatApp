@@ -22,9 +22,15 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
 				if (data.error) throw new Error(data.error);
 				console.log(data?.message)
 				data?.message?.length > 30 ? 
-					setLatestText(`${data?.message.slice(0,27)}. . .`)
+					setLatestText(`${data?.message.slice(0,15)}. . .`)
 					: setLatestText(data?.message)
 				setformattedTime(extractTime(data?.createdAt));
+
+				/*for (let index = 0; index < listConversation.length; index++) {
+					const element = listConversation[index];
+					//if (data.receiverId === element.receiverId)
+					
+				}*/
 
 			} catch (error) {
 				toast.error(error.message);
@@ -41,7 +47,7 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
 		<>
 			<div
 				className={` flex gap-2 items-center hover:bg-sky-500 rounded-2xl p-1 cursor-pointer
-					${isSelected ? "bg-sky-500" : ""} w-full
+					${isSelected ? "bg-sky-500 text-white" : "text-white/[0.4] hover:text-white"} w-full
 				`}
 				onClick={() => setSelectedConversation(conversation)}
 			>
@@ -54,13 +60,13 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
 				<div className="w-full">
 					<div className=' flex flex-col '>
 						<div className="flex items-start">
-							<p className='font-semibold text-gray-200 capitalize'>{conversation.fullName}</p>
+							<p className='font-semibold text-gray-100 capitalize'>{conversation.fullName}</p>
 						</div>
 							
 						<div className=' flex justify-between '>	
 							<div className=" w-4/5 flex items-start">
-								<p className={`text-xs ${isSelected ? "text-white" : "text-gray-400"} `}>
-									{`${latestText ? latestText : "Click to start conversation"}` }
+								<p className={`text-xs `}>
+									{`${latestText ? latestText : "Click to start"}` }
 								</p>
 							</div>						
 							<div className="w-1/10 items-baseline content-end justify-end right-2 text-end">

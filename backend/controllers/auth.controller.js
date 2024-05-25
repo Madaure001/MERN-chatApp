@@ -6,11 +6,15 @@ export const login = async (req, res) => {
     try {
 
         const {username, password} = req.body;
-        const user = await User.findOne({username});                //find one user in the database
+        const user = await User.findOne({username});    //find one user in the database
+         if (!user){                           //invalid username or wrong password
+            return res.status(400).json({error: "user does not exist"});
+        }
+                
         const isPasswordCorrect = await bcrypt.compare(password, user.password || "");  //compare password to user password or an empty string for invalid username
         
-        if (!user || !isPasswordCorrect){                           //invalid username or wrong password
-            return res.status(400).json({error: "Invalid username or password"});
+        if (!isPasswordCorrect){                           //invalid username or wrong password
+            return res.status(400).json({error: "Invalid password"});
         }
 
         generateTokenAndSetCookie(user._id, res);               //if user is found and password match

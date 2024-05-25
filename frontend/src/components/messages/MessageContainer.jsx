@@ -4,6 +4,7 @@ import MessageInput from "./MessageInput.jsx";
 import Messages from "./Messages";
 import { TiMessages } from "react-icons/ti";
 import { useAuthContext } from "../../context/AuthContext.jsx";
+import { MdOutlineArrowBackIosNew } from "react-icons/md";
 
 const MessageContainer = () => {
 	const { selectedConversation, setSelectedConversation } = useConversation();
@@ -13,21 +14,44 @@ const MessageContainer = () => {
 		return () => setSelectedConversation(null);
 	}, [setSelectedConversation]);
 
+	const clearSelected = () => {
+		setSelectedConversation(null)
+	}
+
 	return (
-		<div className='md:flex w-full flex-col p-4 hidden'>
-			{!selectedConversation ? (
-				<NoChatSelected />
-			) : (
-				<>
-					{/* Header */}
-					<div className='bg-slate-500 px-8 rounded-lg py-2 mb-2'>
+		<div>
+			<div className='md:flex min-w-[480px] border-l-2 border-gray-500 flex-col p-4 h-[90vh] hidden'>
+				{!selectedConversation ? (
+					<NoChatSelected />
+				) : (
+					<>
+						{/* Header */}
+						<div className='bg-slate-500 px-8 rounded-lg py-2 mb-2'>
+							<span className='label-text'>To:</span>{" "}
+							<span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
+						</div>
+						<Messages />
+						<MessageInput />
+					</>
+				)}
+			</div>
+			<div className={` w-full h-[90vh] ${selectedConversation ? "flex flex-col p-2 md:hidden" : "hidden"}`}>
+				{/* Header */}
+				<div className="flex gap-2 p-2 w-full">
+					<MdOutlineArrowBackIosNew 
+						className="mb-1 w-7 h-7 bg-gray-500 rounded-full text-white/[0.4]"
+						onClick={clearSelected}
+					/>
+				
+					<div className='bg-slate-500 px-4 rounded-lg py-1 mb-2 w-full'>
+						
 						<span className='label-text'>To:</span>{" "}
-						<span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
+						<span className='text-gray-900 font-bold'>{selectedConversation?.fullName}</span>
 					</div>
-					<Messages />
-					<MessageInput />
-				</>
-			)}
+				</div>
+				<Messages />
+				<MessageInput />
+			</div>
 		</div>
 		
 	);
