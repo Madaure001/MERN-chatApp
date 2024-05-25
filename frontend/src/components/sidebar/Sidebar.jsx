@@ -9,7 +9,7 @@ const Sidebar = () => {
   return (
     <div className={`  ${selectedConversation ? " hidden md:flex flex-col border-r border-slate-500 max-w-[30vw] w-full" : "w-full md:w-[35vw] "}`}>
       <div className="flex-start p-4">
-        <h1 className="text-blue-400 font-bold text-lg">EazyChat</h1>
+        <h1 className="text-blue-400 font-bold text-2xl">EazyChat</h1>
       </div>
       <SearchInput />
       <div className="py-2 px-3"></div> {/*for a cleaner UI*/}
