@@ -15,7 +15,7 @@ export const SocketContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (authUser) {
-			const socket = io("httplocalhost:8000", {
+			const socket = io("https://eazychat-48m7.onrender.com", {
 				query: {
 					userId: authUser._id,
 				},
