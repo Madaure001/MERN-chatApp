@@ -1,8 +1,8 @@
 # MERN Stack Project: Responsive Real Time Chat App
 
-![Demo App](https://photos.google.com/album/AF1QipPN-ZdqYuq5ZU-BzGnkywrSUKk2rpIj1jcO11Th/photo/AF1QipMUQtXmYRbxkmPw4iyn-RuxkLIMR_CK1nk25B55)
+![Demo App](/frontend/public/eazychat%20website.PNG)
 
-[See it Live here](https://eazychat-48m7.onrender.com/4)
+[See it Live here](https://eazychat-48m7.onrender.com)
 
 Some Features:
 
